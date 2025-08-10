@@ -1,5 +1,5 @@
 import { ColorRepresentation } from 'three';
-import { FaceColors } from './build-3x3-cube.types';
+import { FaceColors } from './draw-3x3-cube.types';
 
 export const SPEED = 1;
 

@@ -7,7 +7,7 @@ import {
   N,
   STICKER_SCALE,
   Z_FIGHTING_EPSILON,
-} from './build-3x3-cube.const';
+} from './draw-3x3-cube.const';
 import {
   BoxGeometry,
   ColorRepresentation,
@@ -18,7 +18,7 @@ import {
   PlaneGeometry,
 } from 'three';
 
-export function build3x3Cube(rootAddCb: (cubeletGroup: Group) => void): void {
+export function draw3x3Cube(rootAddCb: (cubeletGroup: Group) => void): void {
   const coreMaterial = new MeshStandardMaterial({
     color: CORE_MATERIAL_COLOR,
   });

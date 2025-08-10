@@ -17,7 +17,7 @@ import {
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import { build3x3Cube } from './utils/build-3x3-cube.util';
+import { draw3x3Cube } from './utils/draw-3x3-cube.util';
 
 @Component({
   selector: 'prs-rubiks-cube',
@@ -54,7 +54,7 @@ export class RubiksCubeComponent implements AfterViewInit {
     this.light.position.set(4, 8, 6);
     this.scene.add(this.light, new AmbientLight(0xffffff, 0.35));
     this.scene.add(this.root);
-    build3x3Cube((cubeletGroup) => this.root.add(cubeletGroup));
+    draw3x3Cube((cubeletGroup) => this.root.add(cubeletGroup));
 
     this.rerender(baseElement);
     this.initOrbitControl(baseElement);
