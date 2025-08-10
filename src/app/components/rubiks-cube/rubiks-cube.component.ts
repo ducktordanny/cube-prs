@@ -15,6 +15,7 @@ import {
   Scene,
   WebGLRenderer,
 } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { build3x3Cube } from './utils/build-3x3-cube.util';
 
@@ -32,6 +33,10 @@ export class RubiksCubeComponent implements AfterViewInit {
   private readonly renderer = new WebGLRenderer({ antialias: true });
   private readonly camera = new PerspectiveCamera(25, 1, 0.1, 100);
   private readonly light = new DirectionalLight(0xffffff, 1.1);
+  private readonly controls = new OrbitControls(
+    this.camera,
+    this.renderer.domElement,
+  );
 
   ngAfterViewInit(): void {
     const baseElement = this.base()?.nativeElement;
@@ -52,6 +57,8 @@ export class RubiksCubeComponent implements AfterViewInit {
     build3x3Cube((cubeletGroup) => this.root.add(cubeletGroup));
 
     this.rerender(baseElement);
+    this.initOrbitControl(baseElement);
+
     // TODO: Need to clean up things in `ngOnDestroy`
   }
 
@@ -65,5 +72,15 @@ export class RubiksCubeComponent implements AfterViewInit {
       baseElement.clientWidth / (baseElement.clientHeight || 1);
     this.camera.updateProjectionMatrix();
     this.renderer.render(this.scene, this.camera);
+  }
+
+  private initOrbitControl(baseElement: HTMLDivElement): void {
+    this.controls.enablePan = false;
+    this.controls.enableDamping = false;
+    this.controls.minDistance = 4;
+    this.controls.maxDistance = 12;
+    this.controls.target.set(0, 0, 0);
+    this.controls.update();
+    this.controls.addEventListener('change', () => this.rerender(baseElement));
   }
 }
