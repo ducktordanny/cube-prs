@@ -26,7 +26,8 @@ import { draw3x3Cube } from './utils/draw-3x3-cube.util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RubiksCubeComponent implements AfterViewInit {
-  private readonly base = viewChild<ElementRef<HTMLDivElement>>('base');
+  private readonly base =
+    viewChild.required<ElementRef<HTMLDivElement>>('base');
 
   private readonly root = new Group();
   private readonly scene = new Scene();
@@ -39,8 +40,7 @@ export class RubiksCubeComponent implements AfterViewInit {
   );
 
   ngAfterViewInit(): void {
-    const baseElement = this.base()?.nativeElement;
-    if (!baseElement) return;
+    const baseElement = this.base().nativeElement;
 
     this.scene.background = new Color('#ffffff');
     this.renderer.setPixelRatio(window.devicePixelRatio);
