@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
+import { RubiksCubeComponent } from './components/rubiks-cube/rubiks-cube.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [RubiksCubeComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
