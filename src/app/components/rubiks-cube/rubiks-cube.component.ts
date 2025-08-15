@@ -8,7 +8,6 @@ import {
 
 import {
   AmbientLight,
-  Color,
   DirectionalLight,
   Group,
   PerspectiveCamera,
@@ -31,7 +30,10 @@ export class RubiksCubeComponent implements AfterViewInit {
 
   private readonly root = new Group();
   private readonly scene = new Scene();
-  private readonly renderer = new WebGLRenderer({ antialias: true });
+  private readonly renderer = new WebGLRenderer({
+    antialias: true,
+    alpha: true,
+  });
   private readonly camera = new PerspectiveCamera(25, 1, 0.1, 100);
   private readonly light = new DirectionalLight(0xffffff, 1.1);
   private readonly controls = new OrbitControls(
@@ -42,7 +44,6 @@ export class RubiksCubeComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const baseElement = this.base().nativeElement;
 
-    this.scene.background = new Color('#ffffff');
     this.renderer.setPixelRatio(window.devicePixelRatio);
     baseElement.append(this.renderer.domElement);
 
